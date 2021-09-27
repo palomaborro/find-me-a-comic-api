@@ -18,6 +18,6 @@ http.interceptors.request.use(config => {
    return config;
   });
 
-module.exports.getComics = (filterValue = '') => {
-    return http.get('/issues', { params: { filter: `name:${filterValue}`, sort:'cover_date:desc' } })
+module.exports.getComics = (filterValue = '', offset = 0) => {
+    return http.get('/issues', { params: { filter: `name:${filterValue}`, sort:'cover_date:desc', limit:'20', offset } })
 }
