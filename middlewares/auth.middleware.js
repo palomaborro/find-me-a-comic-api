@@ -27,5 +27,10 @@ module.exports.isAuthenticated = (req, res, next) => {
 }
 
 module.exports.isNotAuthenticated = (req, res, next) => {
-    
+    const authorization = req.header('Authorization')
+    if (!authorization) {
+        next()
+    } else {
+        next(createError(401))
+    }
 }
