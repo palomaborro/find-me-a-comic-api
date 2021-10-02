@@ -5,11 +5,11 @@ const jsonwebtoken = require("jsonwebtoken");
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
-  User.findOne({ email }).then((user) => {
+  User.findOne({ email: email }).then((user) => {
     if (!user) {
       next(createError(404, { error: "Incorrect email or password" }));
     } else {
-      user.checkPassword(password).then((match) => {
+      return user.checkPassword(password).then((match) => {
         if (!match) {
           next(
             createError(404, {
@@ -17,13 +17,15 @@ module.exports.login = (req, res, next) => {
             })
           );
         } else {
-          jsonwebtoken.sign(
-            { id: user._id },
-            process.env.JWT_SECRET || "changeme",
-            {
-                expiresIn: 'id',
-            }
-          );
+          res.json({
+            access_token: jsonwebtoken.sign(
+              { id: user._id },
+              process.env.JWT_SECRET || "changeme",
+              {
+                  expiresIn: '1d',
+              }
+            )
+          })
         }
       });
     }

@@ -27,7 +27,6 @@ mongoose.connection.once("open", () => {
     })
     .then((dbusers) => {
       users = dbusers;
-      const products = [];
     })
     .then(() => console.info(`- All data created!`))
     .catch((error) => console.error(error))
