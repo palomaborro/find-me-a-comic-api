@@ -19,9 +19,14 @@ http.interceptors.request.use(config => {
   });
 
   // /issues
-module.exports.getComics = (filterValue = '', offset = 0) => {
+module.exports.getNewComics = (filterValue = '', offset = 0) => {
     return http.get('/issues', { params: { filter: `name:${filterValue}`, sort:'cover_date:desc', limit:'20', offset } })
 }
+
+module.exports.getComics = (filterValue = '') => {
+    return http.get('/issues', { params: { filter: `name:${filterValue}`, limit:'20' } })
+}
+
 
 // /issue
 module.exports.getComic = (id) => {
