@@ -29,6 +29,10 @@ module.exports.getComics = (filterValue = '') => {
 
 
 // /issue
+module.exports.getNewComic = (id) => {
+    return http.get(`/issue/4000-${id}`)
+}
+
 module.exports.getComic = (id) => {
     return http.get(`/issue/4000-${id}`)
 }

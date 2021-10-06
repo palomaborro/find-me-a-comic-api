@@ -6,12 +6,19 @@ const listSchema = new mongoose.Schema(
       type: String,
       required: "Write a title",
     },
+    author: {
+      type: mongoose.Types.ObjectId,
+      required: "An author is required",
+      ref: "User",
+    },
     description: {
       type: String,
       required: "Write a list",
     },
     comics: {
-        type: [String]
+        type: [String],
+        default: [],
+        required: "You must add at least a comic",
     },
   },
   {

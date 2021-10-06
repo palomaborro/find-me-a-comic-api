@@ -26,6 +26,7 @@ const userSchema = new mongoose.Schema(
     },
     image: {
       type: String,
+      required: "An image is required",
       validate: {
         validator: (value) => {
           try {

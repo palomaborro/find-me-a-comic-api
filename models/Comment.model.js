@@ -13,11 +13,14 @@ const commentSchema = new mongoose.Schema(
       required: "An author is required",
       ref: "User",
     },
-    list: {
-        type: mongoose.Types.ObjectId,
-        required: "A list is required",
-        ref: "List"
-    }
+    image: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    },
+    comicId: {
+      type: String,
+      required: 'A comic id is required'
+    },
   },
   {
     timestamps: true,
