@@ -1,4 +1,5 @@
-const Comment = require('../models/Comment.model')
+const Comment = require('../models/Comment.model');
+const Fav = require('../models/Fav.model');
 const { getNewComics, getNewComic, getComics, getComic} = require("../services/comicVine");
 
 module.exports.newComicsList = (req, res, next) => {
@@ -30,3 +31,26 @@ module.exports.comicDetail = (req, res, next) => {
   .then(([comic, comments]) => res.json({...comic, comments}))
   .catch(next);
 };
+
+module.exports.favComic = (req, res, next) => {
+  Fav.findOneAndDelete({
+      user: req.user._id,
+      comicId: req.params.id
+    })
+    .then(fav => {
+      if (!fav) {
+        return Fav.create({
+            user: req.user._id,
+            comicId: req.params.id
+          })
+          .then(() => res.json({
+            fav: false
+          }))
+      } else {
+        res.json({
+          fav: true
+        })
+      }
+    })
+    .catch(next)
+}
