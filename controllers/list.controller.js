@@ -21,7 +21,6 @@ module.exports.getLists = (req, res, next) => {
 module.exports.addComicToList = (req, res, next) => {
   const { listId } = req.body;
   const id = req.params.id;
-  console.log(listId, id)
   List.findById(listId)
     .then((list) => {
       list.comics = [...list.comics, id];
@@ -29,3 +28,21 @@ module.exports.addComicToList = (req, res, next) => {
     })
     .catch(next);
 };
+
+module.exports.deleteList = (req, res, next) => {
+  List.findByIdAndDelete(req.params.id)
+  .then(result => {
+    if (!result) {
+      res.json({ deleted: false })
+    } else {
+      res.json({ deleted: true })
+    }
+  })
+  .catch(next)
+}
+
+module.exports.getUserList = (req, res, next) => {
+  const { list } = req.params;
+  List.find({author: req.currentUser, title: list})
+  .then(data => res.send(data))
+}
