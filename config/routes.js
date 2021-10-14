@@ -29,7 +29,7 @@ router.post('/users', authMiddleware.isNotAuthenticated, upload.single('image'),
 router.get('/lists', authMiddleware.isAuthenticated, listController.getLists);
 router.get('/mycollection/:list', authMiddleware.isAuthenticated, listController.getUserList);
 router.post('/mycollection/:lists', authMiddleware.isAuthenticated, listController.createList);
-router.put('/lists/:id', listController.addComicToList);
+router.put('/lists/:id', authMiddleware.isAuthenticated, listController.addComicToList);
 router.delete('/mycollection/lists/:id', authMiddleware.isAuthenticated, listController.deleteList);
 
 module.exports = router;

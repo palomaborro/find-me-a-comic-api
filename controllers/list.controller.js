@@ -45,4 +45,5 @@ module.exports.getUserList = (req, res, next) => {
   const { list } = req.params;
   List.find({author: req.currentUser, title: list})
   .then(data => res.send(data))
+  .catch(next)
 }

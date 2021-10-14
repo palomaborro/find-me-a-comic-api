@@ -1,5 +1,4 @@
 const Comment = require('../models/Comment.model');
-const Fav = require('../models/Fav.model');
 const { getNewComics, getNewComic, getComics, getComic} = require("../services/comicVine");
 
 module.exports.newComicsList = (req, res, next) => {

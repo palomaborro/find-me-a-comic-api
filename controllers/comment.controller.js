@@ -11,15 +11,3 @@ module.exports.addComicComment = (req, res, next) => {
     })
     .catch(next)
   }
-
-  // module.exports.deleteComicComment = (req, res, next) => {
-  //   Comment.findByIdAndDelete(req.params.id)
-  //   .then(result => {
-  //     if (!result) {
-  //       res.json({ deleted: false })
-  //     } else {
-  //       res.json({ deleted: true })
-  //     }
-  //   })
-  //   .catch(next)
-  // }

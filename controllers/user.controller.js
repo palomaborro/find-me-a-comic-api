@@ -1,4 +1,5 @@
 const User = require('../models/User.model');
+const List = require('../models/List.model');
 
 module.exports.getCurrentUser = (req, res, next) => {
    User.findById(req.currentUser)
