@@ -2,6 +2,7 @@ const List = require("../models/List.model");
 
 module.exports.createList = (req, res, next) => {
   const list = { ...req.body, author: req.currentUser };
+  console.log(req.currentUser)
   List.create(list)
     .then((list) => {
       return list.populate("author");
@@ -19,7 +20,7 @@ module.exports.getLists = (req, res, next) => {
 };
 
 module.exports.addComicToList = (req, res, next) => {
-  const { listId } = req.body;
+  const  listId  = req.body.listId;
   const id = req.params.id;
   List.findById(listId)
     .then((list) => {

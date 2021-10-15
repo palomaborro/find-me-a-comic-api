@@ -15,8 +15,8 @@ router.get('/comics', comicsController.comicList);
 router.get('/comics/:id', comicsController.comicDetail);
 
 // Comments
-router.post('/comics/:id/comments', authMiddleware.isAuthenticated, commentsController.addComicComment);
-router.post('/new/:id/comments', authMiddleware.isAuthenticated, commentsController.addComicComment);
+router.post('/comics/:id/comments', commentsController.addComicComment);
+router.post('/new/:id/comments', commentsController.addComicComment);
 
 // Auth
 router.post('/login', authMiddleware.isNotAuthenticated, authController.login);
