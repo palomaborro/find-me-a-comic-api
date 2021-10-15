@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const DB_NAME = 'FindMeAComic';
 const URI = process.env.MONGODB_URI || 'mongodb://localhost:27017';
-const DB_URI = `${URI}/${DB_NAME}`;
+const DB_URI = `${URI}`;
 
 mongoose
   .connect(DB_URI, {})
